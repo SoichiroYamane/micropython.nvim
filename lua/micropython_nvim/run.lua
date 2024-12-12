@@ -13,10 +13,12 @@ function M.mprun()
   --   return
   -- end
   local ampy_assembled_command = string.format(
-    'ampy -p %s -b %s run %s; %s',
+    'ampy -p %s -b %s run %s; ampy -p %s -b %s reset; %s',
     _G['AMPY_PORT'],
     _G['AMPY_BAUD'],
     nvim.nvim_buf_get_name(0),
+    _G['AMPY_PORT'],
+    _G['AMPY_BAUD'],
     utils.extra
   )
   local term = Terminal:new({ cmd = ampy_assembled_command, direction = 'float' })
